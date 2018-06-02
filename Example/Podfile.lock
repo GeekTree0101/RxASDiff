@@ -1,0 +1,71 @@
+PODS:
+  - DeepDiff (1.2.0)
+  - Nimble (7.0.3)
+  - PINCache (3.0.1-beta.6):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.6)
+    - PINCache/Core (= 3.0.1-beta.6)
+  - PINCache/Arc-exception-safe (3.0.1-beta.6):
+    - PINCache/Core
+  - PINCache/Core (3.0.1-beta.6):
+    - PINOperation (~> 1.1.0)
+  - PINOperation (1.1.1)
+  - PINRemoteImage/Core (3.0.0-beta.13):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.13):
+    - PINRemoteImage/Core
+  - PINRemoteImage/PINCache (3.0.0-beta.13):
+    - PINCache (= 3.0.1-beta.6)
+    - PINRemoteImage/Core
+  - Quick (1.2.0)
+  - RxASDiff (1.0.0):
+    - DeepDiff (~> 1.2)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+    - Texture (~> 2.7)
+  - RxCocoa (4.1.2):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.2)
+  - Texture (2.7):
+    - Texture/PINRemoteImage (= 2.7)
+  - Texture/Core (2.7)
+  - Texture/PINRemoteImage (2.7):
+    - PINRemoteImage/iOS (= 3.0.0-beta.13)
+    - PINRemoteImage/PINCache
+    - Texture/Core
+
+DEPENDENCIES:
+  - Nimble (~> 7.0.2)
+  - Quick (~> 1.2.0)
+  - RxASDiff (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DeepDiff
+    - Nimble
+    - PINCache
+    - PINOperation
+    - PINRemoteImage
+    - Quick
+    - RxCocoa
+    - RxSwift
+    - Texture
+
+EXTERNAL SOURCES:
+  RxASDiff:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DeepDiff: 0ee83ac6942d441f677c22e981548c6e0937f2b6
+  Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
+  PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
+  PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
+  PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  RxASDiff: 0f5a04bb48c45410b07167b759c304b9805661ff
+  RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
+  Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
+
+PODFILE CHECKSUM: 077e960f644fd647e45b1b4b4abfcf1167c3f417
+
+COCOAPODS: 1.5.3
