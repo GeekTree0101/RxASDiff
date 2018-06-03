@@ -30,20 +30,6 @@ public struct ASRxDiffAnimate {
     }
 }
 
-public extension Reactive where Base: ASTableNode {
-    public func applyDiff<T: Hashable>(_ relay: ASDiffRelay<T>,
-                                       section: Int,
-                                       completion: ((Bool) -> Void)?,
-                                       animate: ASRxDiffAnimate = .init()) -> Disposable {
-        return relay.rxDiff()
-            .map { IndexPathConverter().convert(changes: $0, section: section) }
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { iter in
-                self.base.applyDiff(iter, animate: animate, completion: completion)
-            })
-    }
-}
-
 public extension ASTableNode {
     public func applyDiff(_ iter: ChangeWithIndexPath,
                           animate: ASRxDiffAnimate = .init(),

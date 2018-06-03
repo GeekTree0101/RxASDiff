@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		9B7DE1A520C39DE2001B2EC8 /* RxASDiffTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7DE1A420C39DE2001B2EC8 /* RxASDiffTestController.swift */; };
+		9B7DE1A720C39F1F001B2EC8 /* RxASDiffTestCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7DE1A620C39F1F001B2EC8 /* RxASDiffTestCellNode.swift */; };
+		9B7DE1A920C3A029001B2EC8 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7DE1A820C3A029001B2EC8 /* UIColor+Extension.swift */; };
+		9B7DE1AB20C3A27E001B2EC8 /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7DE1AA20C3A27E001B2EC8 /* TestModel.swift */; };
 		C843551D10A63FD3B67C6A7E /* Pods_RxASDiff_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 163C7D31DA96407B9DBA1107 /* Pods_RxASDiff_Example.framework */; };
 		EC461C6B34794972857035E1 /* Pods_RxASDiff_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6D26476AA895BB2337A6EC4 /* Pods_RxASDiff_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -36,13 +39,16 @@
 		607FACD01AFB9204008FA782 /* RxASDiff_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxASDiff_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* RxASDiff_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxASDiff_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		722F481195D42CAD814D7A6F /* Pods-RxASDiff_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxASDiff_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxASDiff_Example/Pods-RxASDiff_Example.release.xcconfig"; sourceTree = "<group>"; };
+		9B7DE1A420C39DE2001B2EC8 /* RxASDiffTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxASDiffTestController.swift; sourceTree = "<group>"; };
+		9B7DE1A620C39F1F001B2EC8 /* RxASDiffTestCellNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxASDiffTestCellNode.swift; sourceTree = "<group>"; };
+		9B7DE1A820C3A029001B2EC8 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		9B7DE1AA20C3A27E001B2EC8 /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		B6D26476AA895BB2337A6EC4 /* Pods_RxASDiff_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxASDiff_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9E7B114A734D4D42176EA59 /* RxASDiff.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RxASDiff.podspec; path = ../RxASDiff.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,10 +109,13 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				9B7DE1A420C39DE2001B2EC8 /* RxASDiffTestController.swift */,
+				9B7DE1A620C39F1F001B2EC8 /* RxASDiffTestCellNode.swift */,
+				9B7DE1A820C3A029001B2EC8 /* UIColor+Extension.swift */,
+				9B7DE1AA20C3A27E001B2EC8 /* TestModel.swift */,
 			);
 			name = "Example for RxASDiff";
 			path = RxASDiff;
@@ -353,8 +362,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				9B7DE1A520C39DE2001B2EC8 /* RxASDiffTestController.swift in Sources */,
+				9B7DE1A720C39F1F001B2EC8 /* RxASDiffTestCellNode.swift in Sources */,
+				9B7DE1AB20C3A27E001B2EC8 /* TestModel.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				9B7DE1A920C3A029001B2EC8 /* UIColor+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

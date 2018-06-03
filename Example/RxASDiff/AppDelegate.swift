@@ -1,9 +1,7 @@
 //
 //  AppDelegate.swift
-//  RxASDiff
 //
 //  Created by Geektree0101 on 06/02/2018.
-//  Copyright (c) 2018 Geektree0101. All rights reserved.
 //
 
 import UIKit
@@ -13,9 +11,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.window = UIWindow()
+        self.window?.rootViewController =  RxASDiffTestController()
+        self.window?.makeKeyAndVisible()
+
         return true
     }
 

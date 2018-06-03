@@ -23,20 +23,22 @@ public class ASDiffRelay<T: Hashable> {
     }
     
     public func rxDiff(_ seed: [T] = [],
-                       _ diffSeed: [Change<T>] = []) -> Observable<[Change<T>]> {
+                       _ diffSeed: [Change<T>] = []) -> Observable<([Change<T>], Int)> {
         return internalBehaviorlRelay
             .scan((seed, diffSeed),
                   accumulator: { source, new -> (new: [T], diff: [Change<T>]) in
                     let old = source.0
                     return (new: new, diff: diff(old: old, new: new))
-            }).map { $0.diff }.asObservable()
+            }).map { new, diff -> ([Change<T>], Int) in
+                return (diff, new.count)
+            }.asObservable()
     }
     
     public func rxDiff(_ seed: [T] = [],
                        _ diffSeed: [Change<T>] = [],
-                       section: Int) -> Observable<ChangeWithIndexPath> {
+                       section: Int) -> Observable<(ChangeWithIndexPath, Int)> {
         return self.rxDiff(seed, diffSeed)
-            .map { IndexPathConverter().convert(changes: $0, section: section) }
+            .map { (IndexPathConverter().convert(changes: $0.0, section: section), $0.1) }
             .observeOn(MainScheduler.asyncInstance)
     }
     
@@ -48,9 +50,10 @@ public class ASDiffRelay<T: Hashable> {
         internalBehaviorlRelay.accept(array + internalBehaviorlRelay.value)
     }
     
-    @discardableResult public func remove(_ hashValue: Int) -> T {
+    @discardableResult public func remove(_ object: T) -> T? {
         var value = internalBehaviorlRelay.value
-        let removedItem = value.remove(at: hashValue)
+        guard let index = value.index(of: object) else { return nil }
+        let removedItem = value.remove(at: index)
         internalBehaviorlRelay.accept(value)
         return removedItem
     }
