@@ -30,6 +30,19 @@ public struct ASRxDiffAnimate {
     }
 }
 
+public extension Reactive where Base: ASTableNode {
+    public func applyDiff<T: Hashable>(_ observer: Observable<[Change<T>]>,
+                                       section: Int,
+                                       completion: ((Bool) -> Void)?,
+                                       animate: ASRxDiffAnimate = .init()) -> Disposable {
+        return observer
+            .map { IndexPathConverter().convert(changes: $0, section: section) }
+            .subscribe(onNext: { iter in
+                self.base.applyDiff(iter, animate: animate, completion: completion)
+            })
+    }
+}
+
 public extension ASTableNode {
     public func applyDiff(_ iter: ChangeWithIndexPath,
                           animate: ASRxDiffAnimate = .init(),

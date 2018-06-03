@@ -10,6 +10,18 @@ import RxSwift
 import RxCocoa
 import DeepDiff
 
+public extension Reactive where Base: ASCollectionNode {
+    public func applyDiff<T: Hashable>(_ observer: Observable<[Change<T>]>,
+                                       section: Int,
+                                       completion: ((Bool) -> Void)?) -> Disposable {
+        return observer
+            .map { IndexPathConverter().convert(changes: $0, section: section) }
+            .subscribe(onNext: { iter in
+                self.base.applyDiff(iter, completion: completion)
+            })
+    }
+}
+
 public extension ASCollectionNode {
     public func applyDiff(_ iter: ChangeWithIndexPath,
                           completion: ((Bool) -> Void)?) {

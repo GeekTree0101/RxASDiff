@@ -8,6 +8,8 @@ import Foundation
 import AsyncDisplayKit
 import RxASDiff
 import RxSwift
+import RxCocoa
+import DeepDiff
 
 class RxASDiffTestController: ASViewController<ASDisplayNode> {
     
@@ -17,9 +19,9 @@ class RxASDiffTestController: ASViewController<ASDisplayNode> {
         case append
     }
     
-    let diffRelay = ASDiffRelay<TestModel>([6 ,7 ,8 ,9 ,10].map { TestModel($0) }, skip: 0)
-    var count: Int = 0
+    let itemBehaviorRelay = BehaviorRelay<[TestModel]>(value: [])
     
+    let defaultItemList: [TestModel] = [6 ,7 ,8 ,9 ,10].map { TestModel($0) }
     var prependItemList: [TestModel] = [1, 2, 3, 4, 5].map { TestModel($0) }
     var appendItemList: [TestModel] = [11, 12, 13, 14, 15].map { TestModel($0) }
 
@@ -50,14 +52,23 @@ class RxASDiffTestController: ASViewController<ASDisplayNode> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        diffRelay
-            .rxDiff(section: Section.item.rawValue)
-            .subscribe(onNext: { [weak self] diff, totalCount in
-                guard let `self` = self else { return }
-                self.count = totalCount
-                self.tableNode.applyDiff(diff, completion: nil)
+        case1()
+        itemBehaviorRelay.accept(defaultItemList)
+    }
+    
+    func case1() {
+        DiffObserver<TestModel>
+            .rxDiff(itemBehaviorRelay.asObservable(), section: 1)
+            .subscribe(onNext: { iter in
+                self.tableNode.applyDiff(iter, completion: nil)
             }).disposed(by: bag)
+    }
+    
+    func case2() {
+        let diffObserver = DiffObserver<TestModel>.rxDiff(itemBehaviorRelay.asObservable())
+        tableNode.rx
+            .applyDiff(diffObserver, section: 1, completion: nil)
+            .disposed(by: bag)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -85,7 +96,7 @@ extension RxASDiffTestController: ASTableDataSource {
         case Section.prepend.rawValue:
             return 1
         case Section.item.rawValue:
-            return count
+            return itemBehaviorRelay.value.count
         case Section.append.rawValue:
             return 1
         default:
@@ -100,10 +111,10 @@ extension RxASDiffTestController: ASTableDataSource {
             case Section.prepend.rawValue:
                 node.loadMore(isAppend: false)
             case Section.item.rawValue:
-                guard indexPath.row < self.diffRelay.value.count else {
+                guard indexPath.row < self.itemBehaviorRelay.value.count else {
                     return ASCellNode()
                 }
-                let model = self.diffRelay.value[indexPath.row]
+                let model = self.itemBehaviorRelay.value[indexPath.row]
                 node.bindMore(model)
             case Section.append.rawValue:
                 node.loadMore(isAppend: true)
@@ -119,16 +130,24 @@ extension RxASDiffTestController: ASTableDelegate {
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case Section.prepend.rawValue:
-            guard !self.prependItemList.isEmpty else { return }
-            self.diffRelay.prepend(self.prependItemList)
-            self.prependItemList.removeAll()
+            self.prepend()
         case Section.append.rawValue:
-            guard !self.appendItemList.isEmpty else { return }
-            self.diffRelay.append(self.appendItemList)
-            self.appendItemList.removeAll()
+            self.append()
         default:
             break
         }
+    }
+    
+    func prepend() {
+        guard !self.prependItemList.isEmpty else { return }
+        self.itemBehaviorRelay.accept(self.prependItemList + self.itemBehaviorRelay.value)
+        self.prependItemList.removeAll()
+    }
+    
+    func append() {
+        guard !self.appendItemList.isEmpty else { return }
+        self.itemBehaviorRelay.accept(self.itemBehaviorRelay.value + self.appendItemList)
+        self.appendItemList.removeAll()
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -138,11 +157,18 @@ extension RxASDiffTestController: ASTableDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction.init(style: .destructive, title: "Remove", handler: { action, indexPath in
-            guard indexPath.row < self.diffRelay.value.count else { return }
-            let model = self.diffRelay.value[indexPath.row]
-            self.diffRelay.remove(model)
+            self.delete(indexPath)
         })
         
         return [deleteAction]
+    }
+    
+    func delete(_ indexPath: IndexPath) {
+        guard indexPath.row < self.itemBehaviorRelay.value.count else { return }
+        let model = self.itemBehaviorRelay.value[indexPath.row]
+        var value = self.itemBehaviorRelay.value
+        guard let index = value.index(of: model) else { return }
+        value.remove(at: index)
+        self.itemBehaviorRelay.accept(value)
     }
 }

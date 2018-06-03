@@ -25,6 +25,8 @@ PODS:
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
+  - RxTest (4.1.2):
+    - RxSwift (~> 4.0)
   - Texture (2.7):
     - Texture/PINRemoteImage (= 2.7)
   - Texture/Core (2.7)
@@ -37,6 +39,7 @@ DEPENDENCIES:
   - Nimble (~> 7.0.2)
   - Quick (~> 1.2.0)
   - RxASDiff (from `../`)
+  - RxTest
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -48,6 +51,7 @@ SPEC REPOS:
     - Quick
     - RxCocoa
     - RxSwift
+    - RxTest
     - Texture
 
 EXTERNAL SOURCES:
@@ -64,8 +68,9 @@ SPEC CHECKSUMS:
   RxASDiff: 0f5a04bb48c45410b07167b759c304b9805661ff
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
+  RxTest: e634f15fd2c2cd0e0120132ef7a4f7be69ad0393
   Texture: 9d7e38965cf22ccd7cd9c249dd78b3f14e70ab6c
 
-PODFILE CHECKSUM: 077e960f644fd647e45b1b4b4abfcf1167c3f417
+PODFILE CHECKSUM: 1ba25b5a6d9a3a02ad0091fc80852990c0541988
 
 COCOAPODS: 1.5.3
