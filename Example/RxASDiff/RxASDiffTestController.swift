@@ -24,7 +24,7 @@ class RxASDiffTestController: ASViewController<ASDisplayNode> {
     let defaultItemList: [TestModel] = [6 ,7 ,8 ,9 ,10].map { TestModel($0) }
     var prependItemList: [TestModel] = [1, 2, 3, 4, 5].map { TestModel($0) }
     var appendItemList: [TestModel] = [11, 12, 13, 14, 15].map { TestModel($0) }
-
+    
     struct Const {
         static let section: Int = 3
     }
