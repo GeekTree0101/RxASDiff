@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'RxASDiff/Classes/**/*'
   
-  s.dependency 'Texture', '~> 2.7'
+  s.dependency 'Texture', '~> 2.6'
   s.dependency 'RxSwift', '~> 4.0'
   s.dependency 'RxCocoa', '~> 4.0'
   s.dependency 'DeepDiff', '~> 1.2'

@@ -21,7 +21,7 @@ PODS:
     - DeepDiff (~> 1.2)
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-    - Texture (~> 2.7)
+    - Texture (~> 2.6)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxSwift (4.1.2)
@@ -65,7 +65,7 @@ SPEC CHECKSUMS:
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  RxASDiff: 0f5a04bb48c45410b07167b759c304b9805661ff
+  RxASDiff: 958bcc7bf06efac1bdebbd6384ec39d7f7f35104
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   RxTest: e634f15fd2c2cd0e0120132ef7a4f7be69ad0393
